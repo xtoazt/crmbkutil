@@ -52,9 +52,9 @@ function buildTree(files: FileEntry[]): TreeNode {
 function getNodeByPath(root: TreeNode, path: string): TreeNode | null {
   if (!path) return root;
   const parts = path.split("/").filter(Boolean);
-  let node: TreeNode | undefined = root;
+  let node: TreeNode = root;
   for (const p of parts) {
-    const next = node.children.get(p);
+    const next: TreeNode | undefined = node.children.get(p);
     if (!next) return null;
     node = next;
   }
@@ -62,12 +62,12 @@ function getNodeByPath(root: TreeNode, path: string): TreeNode | null {
 }
 
 function renderBreadcrumbs(path: string): void {
-  const crumbs = [{ name: "Home", path: "" } as const];
+  const crumbs: { name: string; path: string }[] = [{ name: "Home", path: "" }];
   const parts = path.split("/").filter(Boolean);
   let accum = "";
   for (const part of parts) {
     accum = accum ? `${accum}/${part}` : part;
-    crumbs.push({ name: part, path: accum } as const);
+    crumbs.push({ name: part, path: accum });
   }
   elements.breadcrumbs.innerHTML = crumbs
     .map((c, i) => `<a href="#" data-path="${c.path}" class="crumb${i === crumbs.length - 1 ? " active" : ""}">${c.name}</a>`)

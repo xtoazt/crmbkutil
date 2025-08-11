@@ -2,14 +2,17 @@
   "compilerOptions": {
     "target": "ES2020",
     "lib": ["ES2020", "DOM"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "None",
+    "moduleResolution": "Node",
     "strict": true,
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": false,
+    "outDir": "dist",
+    "rootDir": "src",
+    "removeComments": true,
+    "sourceMap": false
   },
   "include": ["src"]
 }
