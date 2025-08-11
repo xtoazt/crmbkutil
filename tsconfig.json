@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "isolatedModules": false,
-    "outDir": "dist",
+    "outDir": "public/dist",
     "rootDir": "src",
     "removeComments": true,
     "sourceMap": false
