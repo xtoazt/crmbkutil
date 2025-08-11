@@ -18,6 +18,7 @@ const elements = {
     openSite: $("open-site"),
     copyLink: $("copy-link"),
     closeModal: $("close-modal"),
+    themeToggle: document.getElementById("theme-toggle"),
 };
 let allFiles = [];
 let rootNode = null;
@@ -197,6 +198,23 @@ function attachGlobalHandlers() {
         if (e.key === "Escape")
             closePreview();
     });
+    if (elements.themeToggle) {
+        const stored = localStorage.getItem("theme");
+        if (stored === 'light')
+            document.documentElement.classList.add('theme-light');
+        updateThemeButton();
+        elements.themeToggle.addEventListener("click", () => {
+            const isLight = document.documentElement.classList.toggle('theme-light');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateThemeButton();
+        });
+    }
+}
+function updateThemeButton() {
+    if (!elements.themeToggle)
+        return;
+    const isLight = document.documentElement.classList.contains('theme-light');
+    elements.themeToggle.textContent = isLight ? '☀️ Light' : '🌙 Dark';
 }
 async function init() {
     attachGlobalHandlers();

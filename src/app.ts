@@ -22,6 +22,7 @@ const elements = {
   openSite: $("open-site") as HTMLAnchorElement,
   copyLink: $("copy-link") as HTMLButtonElement,
   closeModal: $("close-modal") as HTMLButtonElement,
+  themeToggle: document.getElementById("theme-toggle") as HTMLButtonElement | null,
 };
 
 let allFiles: FileEntry[] = [];
@@ -204,6 +205,24 @@ function attachGlobalHandlers(): void {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closePreview();
   });
+
+  // Theme toggling
+  if (elements.themeToggle) {
+    const stored = localStorage.getItem("theme") as 'light' | 'dark' | null;
+    if (stored === 'light') document.documentElement.classList.add('theme-light');
+    updateThemeButton();
+    elements.themeToggle.addEventListener("click", () => {
+      const isLight = document.documentElement.classList.toggle('theme-light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      updateThemeButton();
+    });
+  }
+}
+
+function updateThemeButton(): void {
+  if (!elements.themeToggle) return;
+  const isLight = document.documentElement.classList.contains('theme-light');
+  elements.themeToggle.textContent = isLight ? '☀️ Light' : '🌙 Dark';
 }
 
 async function init(): Promise<void> {
