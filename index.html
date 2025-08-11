@@ -1,58 +1,68 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Chromebook Utilities</title>
-  <style>
-    body { font-family: sans-serif; }
-    ul { list-style-type: none; padding-left: 20px; }
-    a { text-decoration: none; color: #0366d6; }
-  </style>
-</head>
-<body>
-  <h1>📁 Chromebook Utilities</h1>
-  <h3>This collection was created by S-PScripts! Check out the source <a href="https://github.com/S-PScripts/chromebook-utilities">here</a> or download the <a href = "https://github.com/S-PScripts/chromebook-utilities/archive/refs/heads/main.zip">repo.</a> </h3>
-  <h4>If nothing loads, try again later.</h4>
-  <div id="file-tree">Loading...</div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chromebook Utilities</title>
+    <link rel="icon" href="/cloak.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="content-wrapper">
+      <header>
+        <h1>Chromebook Utilities</h1>
+        <h2>Browse, search, and preview all .txt guides and links with ease</h2>
+      </header>
 
-  <script>
-    const user = "S-PScripts";
-    const repo = "chromebook-utilities";
-    const branch = "main";
-    const apiBase = `https://api.github.com/repos/${user}/${repo}/contents/`;
+      <div class="toolbar">
+        <div class="search">
+          <input id="search-input" type="search" placeholder="Search files and folders..." autocomplete="off" />
+          <span id="result-count" class="muted"></span>
+        </div>
+        <div class="links">
+          <a class="button" href="https://github.com/S-PScripts/chromebook-utilities" target="_blank" rel="noopener">Source</a>
+          <a class="button" href="https://github.com/S-PScripts/chromebook-utilities/archive/refs/heads/main.zip" target="_blank" rel="noopener">Download</a>
+        </div>
+      </div>
 
-    async function fetchTree(path = "") {
-      const url = apiBase + path;
-      const response = await fetch(url);
-      if (!response.ok) {
-        return `<li>Error loading ${path}</li>`;
-      }
-      const items = await response.json();
+      <nav class="breadcrumbs" id="breadcrumbs"></nav>
 
-      if (!Array.isArray(items)) return "";
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="sidebar-header">Folders</div>
+          <ul id="folder-tree" class="tree"></ul>
+        </aside>
 
-      const ul = document.createElement("ul");
-      for (const item of items) {
-        const li = document.createElement("li");
+        <main class="main">
+          <div class="section-header">
+            <h3 id="section-title">All files</h3>
+          </div>
+          <div id="file-list" class="file-grid"></div>
+        </main>
+      </div>
 
-        if (item.type === "dir") {
-          li.innerHTML = `<strong>📁 ${item.name}</strong>`;
-          const subTree = await fetchTree(item.path);
-          li.appendChild(subTree);
-        } else if (item.type === "file") {
-          const rawURL = `${window.location.origin}/${item.path}`;
-          li.innerHTML = `<a href="${rawURL}" target="_blank">📄 ${item.name}</a>`;
-        }
-        ul.appendChild(li);
-      }
-      return ul;
-    }
+      <footer>
+        Curated by <a href="https://github.com/S-PScripts" target="_blank" rel="noopener">S-PScripts</a>. If nothing loads, try again later.
+      </footer>
+    </div>
 
-    fetchTree().then(tree => {
-      const container = document.getElementById("file-tree");
-      container.innerHTML = "";
-      container.appendChild(tree);
-    });
-  </script>
-</body>
-</html>
+    <div id="preview-modal" class="modal hidden" aria-hidden="true" role="dialog" aria-label="File preview">
+      <div class="modal-content">
+        <div class="modal-bar">
+          <div class="modal-title" id="preview-title">Preview</div>
+          <div class="modal-actions">
+            <a id="open-raw" class="button small" target="_blank" rel="noopener">Open raw</a>
+            <a id="open-site" class="button small" target="_blank" rel="noopener">Open file</a>
+            <button id="copy-link" class="button small ghost">Copy link</button>
+            <button id="close-modal" class="button small danger">Close</button>
+          </div>
+        </div>
+        <pre id="preview-body" class="preview"></pre>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+  </html>

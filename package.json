@@ -1,0 +1,17 @@
+{
+  "name": "chromebook-utilities",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site for Chromebook Utilities with TypeScript build",
+  "license": "MIT",
+  "scripts": {
+    "build": "esbuild src/app.ts --bundle --outfile=app.js --format=iife --minify && esbuild src/toc.ts --bundle --outfile=script.js --format=iife --minify",
+    "dev": "esbuild src/app.ts --bundle --outfile=app.js --format=iife --sourcemap --watch --log-level=info & esbuild src/toc.ts --bundle --outfile=script.js --format=iife --sourcemap --watch --log-level=info",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.5",
+    "typescript": "^5.5.4"
+  }
+}
+
