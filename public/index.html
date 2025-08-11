@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chromebook Utilities</title>
+    <link rel="icon" href="/cloak.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="content-wrapper">
+      <header>
+        <h1>Chromebook Utilities</h1>
+        <h2>Browse, search, and preview all .txt guides and links with ease</h2>
+      </header>
+
+      <div class="toolbar">
+        <div class="search">
+          <input id="search-input" type="search" placeholder="Search files and folders..." autocomplete="off" />
+          <span id="result-count" class="muted"></span>
+        </div>
+        <div class="links">
+          <a class="button" href="https://github.com/S-PScripts/chromebook-utilities" target="_blank" rel="noopener">Source</a>
+          <a class="button" href="https://github.com/S-PScripts/chromebook-utilities/archive/refs/heads/main.zip" target="_blank" rel="noopener">Download</a>
+        </div>
+      </div>
+
+      <nav class="breadcrumbs" id="breadcrumbs"></nav>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="sidebar-header">Folders</div>
+          <ul id="folder-tree" class="tree"></ul>
+        </aside>
+
+        <main class="main">
+          <div class="section-header">
+            <h3 id="section-title">All files</h3>
+          </div>
+          <div id="file-list" class="file-grid"></div>
+        </main>
+      </div>
+
+      <footer>
+        Curated by <a href="https://github.com/S-PScripts" target="_blank" rel="noopener">S-PScripts</a>. If nothing loads, try again later.
+      </footer>
+    </div>
+
+    <div id="preview-modal" class="modal hidden" aria-hidden="true" role="dialog" aria-label="File preview">
+      <div class="modal-content">
+        <div class="modal-bar">
+          <div class="modal-title" id="preview-title">Preview</div>
+          <div class="modal-actions">
+            <a id="open-raw" class="button small" target="_blank" rel="noopener">Open raw</a>
+            <a id="open-site" class="button small" target="_blank" rel="noopener">Open file</a>
+            <button id="copy-link" class="button small ghost">Copy link</button>
+            <button id="close-modal" class="button small danger">Close</button>
+          </div>
+        </div>
+        <pre id="preview-body" class="preview"></pre>
+      </div>
+    </div>
+
+    <script src="/dist/app.js"></script>
+  </body>
+  </html>

@@ -5,7 +5,7 @@
   "description": "Static site for Chromebook Utilities with TypeScript build",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "node build.mjs && tsc",
     "dev": "tsc -w",
     "typecheck": "tsc --noEmit"
   },

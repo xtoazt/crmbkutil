@@ -1,0 +1,21 @@
+Emulators (no pre-added games):
+https://binbashbanana.github.io/webretro/ 
+https://demo.emulatorjs.org/ 
+
+Download ROMS from here:
+https://www.romspedia.com/ 
+https://theromdepot.com (make an account, no email needed)
+https://romsdownload.net/
+https://hexrom.com/
+
+Links to GBA (has emulatorjs and emulator gxmes):
+https://cattn.github.io/gba/ (3.0)
+https://mathstudy.dev/gba/ (2.0)
+
+I got these ones banned in my school...
+https://www.romsgames.net/
+https://www.gamulator.com/ 
+https://www.retrostic.com/
+
+(These were the only unblocked gxme websites that let you play online without downloading for me :P)
+LOL THEY UNBANNED RETROSTIC (NO CLUE WHY)
