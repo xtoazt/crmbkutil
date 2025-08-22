@@ -6,4 +6,4 @@
 - Join Titanium Network (.gg/unblock)!
 - I got updated this with a real UI (xtoazt)
 
-### Created by S-PScripts
+### Created by S-PScripts and xtoazt
